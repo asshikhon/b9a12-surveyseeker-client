@@ -15,6 +15,7 @@ const Home = () => {
       </Helmet>
 <Banner />
 
+
       <HowItWorks />
       <Faq />
 

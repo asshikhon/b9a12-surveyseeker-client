@@ -60,7 +60,7 @@ const ContactUs = () => {
         <h2 className=" md:pt-0 text-center text-3xl md:text-4xl lg:text-4xl font-extrabold text-gray-900 uppercase">
           Contact Us
         </h2>
-        <div className="sm:mt-3 md:mt-6 rounded-xl bg-gray-100 py-4 lg:py-8 px-4 lg:px-8 shadow sm:rounded-lg sm:px-10">
+        <div className="sm:mt-3 md:mt-6 rounded-xl bg-[#c7d5ab] py-4 lg:py-8 px-4 lg:px-8 shadow sm:rounded-lg sm:px-10">
           <form onSubmit={handleSubmit} className="sm:space-y-1 lg:space-y-2">
             <div>
               <label
