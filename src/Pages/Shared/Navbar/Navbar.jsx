@@ -57,7 +57,7 @@ const Navbar = () => {
           to="/surveys"
           className={({ isActive }) =>
             isActive
-              ? "text-base font-semibold border border-orange-500 rounded-lg text-[#23BE0A] hover:bg-orange-500 hover:text-white"
+              ? "text-base font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
               : "text-base z-[1] hover:bg-[#23BE0A] hover:text-white"
           }
         >
@@ -69,7 +69,7 @@ const Navbar = () => {
           to="/pricing"
           className={({ isActive }) =>
             isActive
-              ? "text-base font-semibold border border-orange-500 rounded-lg text-[#23BE0A] hover:bg-orange-500 hover:text-white"
+              ? "text-base font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
               : "text-base z-[1] hover:bg-[#23BE0A] hover:text-white"
           }
         >
@@ -82,7 +82,7 @@ const Navbar = () => {
           to="/contact"
           className={({ isActive }) =>
             isActive
-              ? "text-base font-semibold border border-orange-500 rounded-lg text-[#23BE0A] hover:bg-orange-500 hover:text-white"
+              ? "text-base font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
               : "text-base  z-[1] hover:bg-[#23BE0A] hover:text-white"
           }
         >
