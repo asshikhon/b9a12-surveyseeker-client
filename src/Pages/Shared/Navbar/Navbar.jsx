@@ -26,14 +26,11 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut();
     Swal.fire({
-      position: window.innerWidth <= 768 ? "top" : "top",
-      width: "auto",
-      padding: "1rem",
-      showCloseButton: false,
-      showCancelButton: false,
-      text: "Logout Successfully",
+      position: "top",
       icon: "success",
-      timer: 3000,
+      title: "Logout Successfully",
+      showConfirmButton: false,
+      timer: 1500
     });
   };
 
