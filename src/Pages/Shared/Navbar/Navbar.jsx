@@ -30,7 +30,7 @@ const Navbar = () => {
       icon: "success",
       title: "Logout Successfully",
       showConfirmButton: false,
-      timer: 1500
+      timer: 1500 
     });
   };
 
@@ -185,9 +185,9 @@ const Navbar = () => {
                   Login
                 </button>
               </Link>
-              <Link to="/register">
+              <Link to="/signup">
                 <button className="btn bg-orange-500 btn-sm md:btn-md lg:text-lg md:px-4 lg:px-6 text-bold text-white">
-                  Register
+                SignUp
                 </button>
               </Link>
             </div>

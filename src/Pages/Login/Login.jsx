@@ -83,7 +83,7 @@ const Login = () => {
     >
       <Helmet>
         <link rel="shortcut icon" href={logoLogin} type="image/x-icon" />
-        <title>RestaurantRealm || Login</title>
+        <title>SurveySeeker || Login</title>
       </Helmet>
 
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl text-gray-100">
@@ -170,11 +170,11 @@ const Login = () => {
         <p className="text-xs text-center sm:px-6">
           Do not have an account?
           <Link
-            to="/register"
+            to="/signup"
             rel="noopener noreferrer"
             className="underline pl-1 text-orange-500"
           >
-            Register now
+            SignUp now
           </Link>
         </p>
       </div>
