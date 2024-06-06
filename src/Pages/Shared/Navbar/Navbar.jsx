@@ -41,7 +41,7 @@ const Navbar = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "text-base font-semibold border border-orange-500 rounded-lg text-[#23BE0A] hover:bg-orange-500 hover:text-white"
+              ? "text-base font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
               : "text-base z-[1] hover:bg-[#23BE0A] hover:text-white"
           }
         >
@@ -166,7 +166,7 @@ const Navbar = () => {
                   className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li className="text-lg">
-                    <Link to="/myItem">Dashboard</Link>
+                    <Link to="/dashboard">Dashboard</Link>
                   </li>
 
                 </ul>

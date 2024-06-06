@@ -7,6 +7,10 @@ import Surveys from "../Pages/Home/Surveys";
 import Pricing from "../Pages/Home/Pricing";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import Statistics from "../Pages/Dashboard/Common/Statistics";
+import SurveyCreation from "../Pages/Dashboard/Surveyor/SurveyCreation";
+import SurveyorSurveys from "../Pages/Dashboard/Surveyor/SurveyorSurveys";
 
 export const router = createBrowserRouter([
   {
@@ -37,4 +41,26 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   { path: '/signup', element: <SignUp /> },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+path: '/dashboard',
+element: <Statistics />,
+
+    },
+      {
+path: 'survey-create',
+element: <SurveyCreation />,
+
+    },
+      {
+path: 'surveyor-surveys',
+element: <SurveyorSurveys />,
+
+    },
+  
+  ],
+  }
 ]);

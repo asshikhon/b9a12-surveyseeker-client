@@ -1,8 +1,16 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import logo from "../../assets/images/price.png"
 
 const Pricing = () => {
   return (
     <div className="">
+
+<Helmet>
+        <link rel="icon" type="image/svg+xml" href={logo} />
+        <title>SurveySeeker || price</title>
+      </Helmet>
+
       <section className="py-20">
         <div className="container px-4 mx-auto">
           <div className="max-w-2xl mx-auto mb-16 text-center">

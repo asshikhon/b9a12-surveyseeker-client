@@ -77,7 +77,7 @@ const SignUp = () => {
     >
       <Helmet>
         <link rel="shortcut icon" href={logo} type="image/x-icon" />
-        <title>SurveySeeker || Login</title>
+        <title>SurveySeeker || SignUp</title>
       </Helmet>
 
 <div className="flex justify-center items-center min-h-screen">
