@@ -5,6 +5,8 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../Pages/Shared/LoadingSpinner";
+import logo from "../../assets/images/add.png"
+import { Helmet } from "react-helmet-async";
 
 const CreateSurvey = () => {
   const { user, loading: authLoading } = useAuth();
@@ -83,6 +85,10 @@ const CreateSurvey = () => {
 
   return (
     <div className="max-w-md mx-auto p-4 block ">
+      <Helmet>
+        <link rel="icon" type="image/svg+xml" href={logo} />
+        <title>Create Survey || Dashboard</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-4">Create Survey</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
