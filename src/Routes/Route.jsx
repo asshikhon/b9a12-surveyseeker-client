@@ -13,6 +13,7 @@ import SurveyCreation from "../Pages/Dashboard/Surveyor/SurveyCreation";
 import SurveyorSurveys from "../Pages/Dashboard/Surveyor/SurveyorSurveys";
 import SurveyDetails from "../Pages/SurveyDetails/SurveyDetails";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
+import Commented from "../Pages/Dashboard/ProUser/Commented";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,11 @@ element: <AllUsers />,
       {
 path: 'surveyor-surveys',
 element: <SurveyorSurveys />,
+
+    },
+      {
+path: 'comments',
+element: <Commented />,
 
     },
   

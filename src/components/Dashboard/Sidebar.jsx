@@ -9,11 +9,18 @@ import logoHome from "../../assets/images/main.jpeg"
 import { IoIosCreate } from "react-icons/io";
 import { FaHome, FaThList, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAdmin from "../../hooks/useAdmin";
+import useSurveyor from "../../hooks/useSurveyor";
+import useProUser from "../../hooks/useProUser";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
   const navigate = useNavigate();
+  const [isAdmin] = useAdmin();
+  const [isSurveyor] = useSurveyor();
+  const [isProUser] = useProUser();
+
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -116,22 +123,24 @@ const Sidebar = () => {
 
                 <span className="mx-4 font-medium">Statistics</span>
               </NavLink>
-              <NavLink
-          to="all-user"
-          end
-          className={({ isActive }) =>
-            isActive
-              ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-              : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-          }
-        >
-                <FaUsers className="w-5 h-5" />
+{
+isAdmin &&               <NavLink
+to="all-user"
+end
+className={({ isActive }) =>
+  isActive
+    ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+    : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+}
+>
+      <FaUsers className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Manage Users</span>
-              </NavLink>
+      <span className="mx-4 font-medium">Manage Users</span>
+    </NavLink>
+}
 
-              {/* Add Room */}
-              <NavLink
+              {/* Create survey */}
+{isSurveyor &&              <NavLink
           to="survey-create"
           className={({ isActive }) =>
             isActive
@@ -142,8 +151,8 @@ const Sidebar = () => {
                 <IoIosCreate  className="w-5 h-5" />
 
                 <span className="mx-4 font-medium">Create Survey</span>
-              </NavLink>
-              {/* My Listing */}
+              </NavLink>}
+              {/* My Surveys */}
               <NavLink
                 to="surveyor-surveys"
                 className={({ isActive }) =>
@@ -157,6 +166,22 @@ const Sidebar = () => {
 
                 <span className="mx-4 font-medium">My Surveys</span>
               </NavLink>
+
+
+              {/* My comments */}
+{isProUser &&              <NavLink
+                to="comments"
+                className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+              
+                <FaThList className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">My Commented On Surveys</span>
+              </NavLink>}
             </nav>
           </div>
         </div>
