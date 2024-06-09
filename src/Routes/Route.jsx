@@ -11,6 +11,8 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import Statistics from "../Pages/Dashboard/Common/Statistics";
 import SurveyCreation from "../Pages/Dashboard/Surveyor/SurveyCreation";
 import SurveyorSurveys from "../Pages/Dashboard/Surveyor/SurveyorSurveys";
+import SurveyDetails from "../Pages/SurveyDetails/SurveyDetails";
+import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,12 @@ export const router = createBrowserRouter([
       {
         path: "/surveys",
         element: <Surveys />,
+      },
+      {
+        path: "/survey/:id",
+        element: <SurveyDetails />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`),
       },
       {
         path: "/pricing",
@@ -53,6 +61,11 @@ element: <Statistics />,
       {
 path: 'survey-create',
 element: <SurveyCreation />,
+
+    },
+      {
+path: 'all-user',
+element: <AllUsers />,
 
     },
       {

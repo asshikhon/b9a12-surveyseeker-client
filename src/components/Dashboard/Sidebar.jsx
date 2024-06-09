@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import logoHome from "../../assets/images/main.jpeg"
 import { IoIosCreate } from "react-icons/io";
-import { FaHome, FaThList } from "react-icons/fa";
+import { FaHome, FaThList, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const Sidebar = () => {
@@ -115,6 +115,19 @@ const Sidebar = () => {
                 <BsGraphUp className="w-5 h-5" />
 
                 <span className="mx-4 font-medium">Statistics</span>
+              </NavLink>
+              <NavLink
+          to="all-user"
+          end
+          className={({ isActive }) =>
+            isActive
+              ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+              : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+          }
+        >
+                <FaUsers className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">Manage Users</span>
               </NavLink>
 
               {/* Add Room */}

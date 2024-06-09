@@ -5,7 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../Pages/Shared/LoadingSpinner";
-import logo from "../../assets/images/add.png"
+import logo from "../../assets/images/add.png";
 import { Helmet } from "react-helmet-async";
 
 const CreateSurvey = () => {
@@ -14,7 +14,7 @@ const CreateSurvey = () => {
   const axiosSecure = useAxiosSecure();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [option, setOption] = useState("no"); // Set default option to "no"
+  const [option, setOption] = useState("no"); 
   const [category, setCategory] = useState("");
   const [deadline, setDeadline] = useState("");
 
@@ -42,7 +42,7 @@ const CreateSurvey = () => {
       toast.success("Survey Created Successfully");
       setTitle("");
       setDescription("");
-      setOption("no"); // Reset to default option "no"
+      setOption("no"); 
       setCategory("");
       setDeadline("");
       navigate('/dashboard/surveyor-surveys');

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../Shared/LoadingSpinner";
+import { Link } from "react-router-dom";
 
 const Surveys = () => {
   const [itemsPerPage, setItemsPerPage] = useState(8);
@@ -29,6 +30,7 @@ const Surveys = () => {
       return data.surveys;
     },
   });
+  
 
   // Fetch count data
   const { data: countData } = useQuery({
@@ -100,17 +102,17 @@ const Surveys = () => {
 
           {/* Search input */}
           <form onSubmit={handleSearch}>
-            <div className="flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
+            <div className="flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-orange-400 focus-within:ring-orange-300">
               <input
                 className="px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
                 type="text"
                 onChange={(e) => setSearchText(e.target.value)}
                 value={searchText}
                 name="search"
-                placeholder="Enter Job Title"
-                aria-label="Enter Job Title"
+                placeholder="Enter Survey Title"
+                aria-label="Enter Survey Title"
               />
-              <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
+              <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-orange-500 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
                 Search
               </button>
             </div>
@@ -128,15 +130,15 @@ const Surveys = () => {
               id="sort"
               className="border p-4 rounded-md"
             >
-              <option value="">Sort By Vote Count</option>
+              <option className="" value="">Sort By Vote Count</option>
               <option value="dsc">Descending Order</option>
               <option value="asc">Ascending Order</option>
             </select>
           </div>
-          <button onClick={handleReset} className="btn">
+          <button  onClick={handleReset} className="btn  bg-orange-500 text-white">
             Reset
           </button>
-          <button onClick={() => refetch()} className="btn">
+          <button onClick={() => refetch()} className="btn  bg-orange-500 text-white">
             Refresh
           </button>
         </div>
@@ -147,13 +149,13 @@ const Surveys = () => {
             <LoadingSpinner className="text-center h-screen mx-auto block" />
           ) : (
             surveys.map((survey, index) => (
-              <div key={index} className="card h-[250px] text-white bg-gray-700 ">
+              <Link to={``} key={index} className="card h-[250px] text-white bg-gray-700 ">
                 <div className="card-body items-center text-center">
                   <h2 className="card-title">{survey.title}</h2>
                   <p>{survey.description}</p>
                   <h3>Total Vote : {survey.totalVotes}</h3>
                 </div>
-              </div>
+              </Link>
             ))
           )}
         </div>
@@ -165,7 +167,7 @@ const Surveys = () => {
         <button
           disabled={currentPage === 1}
           onClick={() => handlePaginationButton(currentPage - 1)}
-          className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-blue-500 hover:text-white"
+          className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-orange-500 hover:text-white"
         >
           <div className="flex items-center -mx-1">
             <svg
@@ -191,8 +193,8 @@ const Surveys = () => {
             onClick={() => handlePaginationButton(btnNum)}
             key={btnNum}
             className={`hidden ${
-              currentPage === btnNum ? "bg-blue-500 text-white" : ""
-            } px-4 py-2 mx-1 transition-colors duration-300 transform rounded-md sm:inline hover:bg-blue-500 hover:text-white`}
+              currentPage === btnNum ? "bg-orange-500 text-white" : ""
+            } px-4 py-2 mx-1 transition-colors duration-300 transform rounded-md sm:inline hover:bg-orange-500 hover:text-white`}
           >
             {btnNum}
           </button>
@@ -201,7 +203,7 @@ const Surveys = () => {
         <button
           disabled={currentPage === numberOfPages}
           onClick={() => handlePaginationButton(currentPage + 1)}
-          className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-blue-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
+          className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-orange-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
         >
           <div className="flex items-center -mx-1">
             <span className="mx-1">Next</span>
