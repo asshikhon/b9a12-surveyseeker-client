@@ -1,28 +1,28 @@
-
 import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types'
 import useAuth from "../hooks/useAuth";
-import useSurveyor from "../hooks/useSurveyor";
+import useProUser from "../hooks/useProUser";
 import LoadingSpinner from "../Pages/Shared/LoadingSpinner";
-const SurveyorRoute = ({children}) => {
-    const [isSurveyor, isSurveyorLoading] = useSurveyor()
+const ProUserRoute = ({children}) => {
+    const [isProUser, isProUserLoading] = useProUser();
     const {user, loading} = useAuth();
     const location = useLocation();
 
-    if(loading || isSurveyorLoading){
+    if(loading || isProUserLoading){
         return <LoadingSpinner />;
     }
     
-    if(user && isSurveyor){
+    if(user && isProUser){
         return children;
     }
     
         return <Navigate to="/login" state={{from: location}} replace></Navigate>
 };
 
-SurveyorRoute.propTypes = {
+
+ProUserRoute.propTypes = {
     children: PropTypes.element,
   }
 
-export default SurveyorRoute;
+export default ProUserRoute;
 

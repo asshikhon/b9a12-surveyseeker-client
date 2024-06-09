@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 const HowItWorks = () => {
   return (
-    <section className="">
+    <section className="mt-12 md:mt-20">
       <div className="container flex flex-col justify-center p-4 mx-auto md:p-8">
         <h2 className="mb-12 text-4xl font-bold leading-none text-center sm:text-5xl">
           How It Works
