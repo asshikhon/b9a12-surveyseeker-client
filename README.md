@@ -50,7 +50,7 @@ Welcome to SurveySeeker, a user-friendly survey platform designed to simplify th
 
 ## Website Name : SurveySeeker
 
-##  admin username/email : ab@cc.cc
+##  admin username/email : aaa@cc.cc
 ##  admin password : 1234Aa
  
 

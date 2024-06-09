@@ -150,7 +150,13 @@ const Login = () => {
 
       // navigate
       navigate(location?.state ? location.state : "/");
-      toast.success("Login Successfully");
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Login successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (err) {
       console.log(err);
       toast.error(err?.message);
