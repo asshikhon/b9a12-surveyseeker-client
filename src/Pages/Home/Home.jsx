@@ -3,6 +3,7 @@ import logoHome from "../../assets/images/home.png";
 import HowItWorks from "./HowItWorks";
 import Faq from "./Faq";
 import Banner from "./Banner";
+import FeaturedSurvey from "./FeaturedSurvey";
 const Home = () => {
 
 
@@ -15,6 +16,7 @@ const Home = () => {
       </Helmet>
 <Banner />
 
+<FeaturedSurvey />
 
       <HowItWorks />
       <Faq />

@@ -12,10 +12,8 @@ import { useState } from 'react'
   import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
-import useProUser from "../../hooks/useProUser";
 import useAdmin from "../../hooks/useAdmin";
 import useSurveyor from "../../hooks/useSurveyor";
-import useUser from "../../hooks/useUser";
 
 
 const SurveyDetails = () => {
@@ -24,10 +22,8 @@ const SurveyDetails = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isProUser] = useProUser();
   const [isAdmin] = useAdmin();
   const [isSurveyor] = useSurveyor();
-  const [isUser] = useUser();
 
 
   const { data: survey = {}, isLoading } = useQuery({
@@ -77,7 +73,7 @@ const handleOpen = () => {
         const userName = user ? user.displayName : "";
         const userEmail = user ? user.email : "";
         const description = form.description.value;
-    
+        const totalVote = parseInt(survey?.voteCount);
         const newData = {
           userName,
           userEmail,
@@ -90,6 +86,7 @@ const handleOpen = () => {
           status,
           surveyor,
           timestamp,
+          totalVote,
         };
     
         try {
@@ -138,7 +135,7 @@ const handleOpen = () => {
         </Helmet>
 
       <div className=" ">
-        <div className="container max-w-6xl px-10 py-6 mx-auto rounded-lg shadow-xl ">
+        <div className="container bg-[#f4faf4] max-w-6xl px-10 py-6 mx-auto rounded-lg shadow-xl ">
           <div className="flex items-center justify-between">
             <span className="text-sm ">{formattedTimestamp}</span>
             <p
@@ -164,8 +161,16 @@ const handleOpen = () => {
           <h3 className="text-xl text-red-500 font-semibold my-3">
             DeadLine : {deadline}
           </h3>
+          <h3 className="text-xl text-green-700 font-semibold my-3">
+            Total Vote Count : {survey?.voteCount || 0}
+          </h3>
           <div className="flex items-center justify-between mt-4">
-{  isAdmin || isSurveyor ? '' :             <Link 
+{  isAdmin || isSurveyor ? <Link 
+
+            to={`/votes/${_id}`}
+            className="btn bg-green-500 text-white text-lg border-0 rounded-xl" disabled>
+              Vote Now
+            </Link> :             <Link 
             to={`/votes/${_id}`}
             className="btn bg-green-500 text-white text-lg border-0 rounded-xl">
               Vote Now
@@ -174,9 +179,15 @@ const handleOpen = () => {
 {/* modal */}
 <div className="{`w-full h-full mt-12 md:20 lg:mt-24 ${isOpen ? 'backdrop-blur' : ''}, `}">
         <>
-         { isAdmin || isSurveyor ? '' : <Button
+         { isAdmin || isSurveyor ? <Button
             onClick={handleOpen}
-            className="rounded-md bg-red-500 py-2 border-0 px-4 font-semibold text-lg text-white focus:outline-none  hover:bg-black/30 focus:outline-white"
+            className="rounded-md btn bg-red-500 py-2 border-0 px-4 font-semibold text-lg text-white focus:outline-none  hover:bg-black/30 focus:outline-white"
+            disabled
+          >
+            Report 
+          </Button> : <Button
+            onClick={handleOpen}
+            className="rounded-md btn bg-red-500 py-2 border-0 px-4 font-semibold text-lg text-white focus:outline-none  hover:bg-black/30 focus:outline-white"
           >
             Report 
           </Button>}
@@ -209,7 +220,7 @@ const handleOpen = () => {
                         <div>
                           <div className="form-control">
                             <label className="label">
-                              <span className="label-text text-base text-black font-semibold">
+                              <span className="label-text text-base  font-semibold">
                                 User Name
                               </span>
                             </label>
@@ -226,7 +237,7 @@ const handleOpen = () => {
 
                           <div className="form-control">
                             <label className="label">
-                              <span className="label-text text-base text-black font-semibold">
+                              <span className="label-text text-base font-semibold">
                                 Feedback
                               </span>
                             </label>

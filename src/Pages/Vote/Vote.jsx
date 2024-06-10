@@ -30,7 +30,7 @@ const Vote = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/dashboard");
+      navigate("/surveys");
     },
   });
 
@@ -52,10 +52,13 @@ const form = e.target;
 const comment = form.comment.value;
     const voter_email = user?.email;
     const voter_name = user?.displayName;
+    const voter_image = user?.photoURL;
+    const totalVote = parseInt(survey?.voteCount);
     const voteCount = parseInt(0);
     const voter = {
       voter_email,
       voter_name,
+      voter_image,
     };
 
     try {
@@ -73,12 +76,14 @@ const comment = form.comment.value;
         status,
         surveyor,
         timestamp,
+        totalVote,
       };
 
       console.log("Survey Data:", voteSurveyData);
 
       // Post data in backend
       await mutateAsync(voteSurveyData);
+
     } catch (error) {
       toast.error(error.message);
     }
@@ -92,7 +97,7 @@ const comment = form.comment.value;
       </Helmet>
 
       <div className="">
-        <div className="container max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-2xl">
+        <div className="container bg-[#faeee0] max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-2xl">
           <div className="mt-3">
             <h2 className="text-2xl font-bold hover:underline">{category}</h2>
           </div>

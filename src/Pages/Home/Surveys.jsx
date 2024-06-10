@@ -150,13 +150,16 @@ const Surveys = () => {
             <LoadingSpinner className="text-center h-screen mx-auto block" />
           ) : (
             surveys.map((survey, index) => (
-              <Link to={`/survey/${survey?._id}`} key={index} className="card h-[250px] text-white bg-gray-700 ">
+              <div  key={index} className="card h-auto min-h-[270px]  bg-[#faf3e0]">
                 <div className="card-body items-center text-center">
                   <h2 className="card-title">{survey.title}</h2>
                   <p>{survey.description}</p>
-                  <h3>Total Vote : {survey.totalVotes}</h3>
+                  <h3 className="text-[#4682B4] text-lg ">Total Vote Count: ({survey?.voteCount || 0})</h3>
                 </div>
-              </Link>
+                <Link to={`/survey/${survey?._id}`}>
+                <button className="btn bg-orange-500 text-white  border-0 text-center block rounded-xl text-base mb-6 mx-auto">View Details</button>
+                </Link>
+              </div>
             ))
           )}
         </div>
