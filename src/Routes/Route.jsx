@@ -14,6 +14,8 @@ import SurveyorSurveys from "../Pages/Dashboard/Surveyor/SurveyorSurveys";
 import SurveyDetails from "../Pages/SurveyDetails/SurveyDetails";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
 import Commented from "../Pages/Dashboard/ProUser/Commented";
+import PrivateRoute from "./PrivateRoute";
+import Vote from "../Pages/Vote/Vote";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +34,16 @@ export const router = createBrowserRouter([
       {
         path: "/survey/:id",
         element: <SurveyDetails />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`),
+      },
+      {
+        path: "/votes/:id",
+        element: (
+          <PrivateRoute>
+            <Vote />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`),
       },

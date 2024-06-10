@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import { format } from "date-fns"; // Importing format from date-fns
 import details from "../../assets/images/details.png"
@@ -11,6 +11,11 @@ import { useState } from 'react'
   import { useNavigate } from "react-router-dom";
   import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import useProUser from "../../hooks/useProUser";
+import useAdmin from "../../hooks/useAdmin";
+import useSurveyor from "../../hooks/useSurveyor";
+import useUser from "../../hooks/useUser";
 
 
 const SurveyDetails = () => {
@@ -19,6 +24,10 @@ const SurveyDetails = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [isProUser] = useProUser();
+  const [isAdmin] = useAdmin();
+  const [isSurveyor] = useSurveyor();
+  const [isUser] = useUser();
 
 
   const { data: survey = {}, isLoading } = useQuery({
@@ -93,7 +102,13 @@ const handleOpen = () => {
           });
           const data = await response.json();
           if (data.insertedId) {
-            toast.success("Gallery added successfully");
+            Swal.fire({
+                position: "top",
+                icon: "success",
+                title: `${user?.displayName} Send Your Report SuccessFully`,
+                showConfirmButton: false,
+                timer: 1500
+              });
  
         }
           navigate("/surveys");
@@ -115,21 +130,21 @@ const handleOpen = () => {
     : "";
 
   return (
-    <div className="w-full h-full mt-12 md:20 lg:mt-24">
+    <div className="w-full h-full mt-12 md:20 lg:mt-24 ">
 
 <Helmet>
           <link rel="icon" type="image/svg+xml" href={details} />
-          <title>SurveySeeker || Surveys</title>
+          <title>Details-{_id}</title>
         </Helmet>
 
       <div className=" ">
-        <div className="container max-w-6xl px-10 py-6 mx-auto rounded-lg shadow-sm ">
+        <div className="container max-w-6xl px-10 py-6 mx-auto rounded-lg shadow-xl ">
           <div className="flex items-center justify-between">
             <span className="text-sm ">{formattedTimestamp}</span>
             <p
               rel="noopener noreferrer"
               href="#"
-              className="px-2 bg-orange-500 p-2 text-white  font-bold rounded-xl "
+              className=" bg-orange-500 p-2 px-4 text-white  font-bold rounded-xl "
             >
               Status : {status}
             </p>
@@ -150,19 +165,21 @@ const handleOpen = () => {
             DeadLine : {deadline}
           </h3>
           <div className="flex items-center justify-between mt-4">
-            <button className="btn bg-green-500 text-white text-lg border-0 rounded-xl">
+{  isAdmin || isSurveyor ? '' :             <Link 
+            to={`/votes/${_id}`}
+            className="btn bg-green-500 text-white text-lg border-0 rounded-xl">
               Vote Now
-            </button>
+            </Link>}
             <div>
 {/* modal */}
 <div className="{`w-full h-full mt-12 md:20 lg:mt-24 ${isOpen ? 'backdrop-blur' : ''}, `}">
         <>
-          <Button
+         { isAdmin || isSurveyor ? '' : <Button
             onClick={handleOpen}
             className="rounded-md bg-red-500 py-2 border-0 px-4 font-semibold text-lg text-white focus:outline-none  hover:bg-black/30 focus:outline-white"
           >
             Report 
-          </Button>
+          </Button>}
 
           <Transition appear show={isOpen}>
             <Dialog
