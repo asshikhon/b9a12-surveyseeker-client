@@ -4,6 +4,7 @@ import HowItWorks from "./HowItWorks";
 import Faq from "./Faq";
 import Banner from "./Banner";
 import FeaturedSurvey from "./FeaturedSurvey";
+import LatestSurveys from "./LatestSurveys";
 const Home = () => {
 
 
@@ -17,6 +18,7 @@ const Home = () => {
 <Banner />
 
 <FeaturedSurvey />
+<LatestSurveys />
 
       <HowItWorks />
       <Faq />
