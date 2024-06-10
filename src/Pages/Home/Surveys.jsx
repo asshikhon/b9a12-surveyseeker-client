@@ -7,6 +7,7 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 import { Link } from "react-router-dom";
 
 const Surveys = () => {
+  // eslint-disable-next-line no-unused-vars
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
@@ -149,7 +150,7 @@ const Surveys = () => {
             <LoadingSpinner className="text-center h-screen mx-auto block" />
           ) : (
             surveys.map((survey, index) => (
-              <Link to={``} key={index} className="card h-[250px] text-white bg-gray-700 ">
+              <Link to={`/survey/${survey?._id}`} key={index} className="card h-[250px] text-white bg-gray-700 ">
                 <div className="card-body items-center text-center">
                   <h2 className="card-title">{survey.title}</h2>
                   <p>{survey.description}</p>
