@@ -19,6 +19,7 @@ import PrivateRoute from "./PrivateRoute";
 import Vote from "../Pages/Vote/Vote";
 import Reported from "../Pages/Dashboard/CommonUser/Reported";
 import Payment from "../Pages/Payment/Payment";
+import AllPayments from "../Pages/Dashboard/Admin/AllPayments";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +87,12 @@ element: <SurveyCreation />,
       {
 path: 'all-user',
 element: <AllUsers />,
+
+    },
+
+      {
+path: 'all-payments',
+element: <AllPayments />,
 
     },
       {

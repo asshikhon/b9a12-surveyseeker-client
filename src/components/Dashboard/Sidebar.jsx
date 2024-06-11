@@ -13,7 +13,7 @@ import useSurveyor from "../../hooks/useSurveyor";
 import useProUser from "../../hooks/useProUser";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { GiVote } from "react-icons/gi";
-import { MdReportProblem } from "react-icons/md";
+import { MdPayments, MdReportProblem } from "react-icons/md";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -138,6 +138,21 @@ const Sidebar = () => {
                   <FaUsers className="w-5 h-5" />
 
                   <span className="mx-4 font-medium">Manage Users</span>
+                </NavLink>
+              )}
+              {isAdmin && (
+                <NavLink
+                  to="all-payments"
+                  end
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+                  <MdPayments className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">All Payments</span>
                 </NavLink>
               )}
 
