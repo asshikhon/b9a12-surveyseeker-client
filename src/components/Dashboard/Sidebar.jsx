@@ -6,14 +6,14 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import logoHome from "../../assets/images/main.jpeg";
 import { IoIosCreate } from "react-icons/io";
-import { FaComments, FaHome, FaThList, FaUsers } from "react-icons/fa";
+import { FaComments, FaEdit, FaHome, FaThList, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAdmin from "../../hooks/useAdmin";
 import useSurveyor from "../../hooks/useSurveyor";
 import useProUser from "../../hooks/useProUser";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { GiVote } from "react-icons/gi";
-import { MdPayments, MdReportProblem } from "react-icons/md";
+import { MdFeedback, MdPayments, MdReportProblem } from "react-icons/md";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -171,6 +171,47 @@ const Sidebar = () => {
                   <span className="mx-4 font-medium">Create Survey</span>
                 </NavLink>
               )}
+
+{/* update survey for surveyor */}
+{isSurveyor && (
+                <NavLink
+                  to="survey-update"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+                  <FaEdit className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Survey update</span>
+                </NavLink>
+            
+              )
+              
+              
+              }
+
+{/* feedback surveyor */}
+{isSurveyor && (
+                <NavLink
+                  to="feedback"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+                  <MdFeedback className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Feedbacks</span>
+                </NavLink>
+            
+              )
+              
+              
+              }
+
               {/* My Surveys */}
               <NavLink
                 to="surveyor-surveys"

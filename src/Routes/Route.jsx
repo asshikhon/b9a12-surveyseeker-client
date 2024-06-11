@@ -20,6 +20,8 @@ import Vote from "../Pages/Vote/Vote";
 import Reported from "../Pages/Dashboard/CommonUser/Reported";
 import Payment from "../Pages/Payment/Payment";
 import AllPayments from "../Pages/Dashboard/Admin/AllPayments";
+import SurveyUpdate from "../Pages/Dashboard/Surveyor/SurveyUpdate";
+import Feedback from "../Pages/Dashboard/Surveyor/Feedback";
 
 export const router = createBrowserRouter([
   {
@@ -98,6 +100,16 @@ element: <AllPayments />,
       {
 path: 'surveyor-surveys',
 element: <SurveyorSurveys />,
+
+    },
+      {
+path: 'survey-update',
+element: <SurveyUpdate />,
+
+    },
+      {
+path: 'feedback',
+element: <Feedback />,
 
     },
       {

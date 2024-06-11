@@ -3,7 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../api/utils";
-import { FaGithub } from "react-icons/fa";
+// import { FaGithub } from "react-icons/fa";
 import bg from "../../assets/images/signup.jpg";
 import logo from "../../assets/images/register.png";
 import { Helmet } from "react-helmet-async";
@@ -13,7 +13,9 @@ import useAxiosCommon from "../../hooks/useAxiosCommon";
 const SignUp = () => {
   const navigate = useNavigate();
   const axiosCommon = useAxiosCommon();
-  const { createUser, googleSignIn, updateUserProfile, githubSignIn } =
+  const { createUser, googleSignIn, updateUserProfile,
+    //  githubSignIn 
+    } =
     useAuth();
 
   const handleSubmit = async (e) => {
@@ -149,47 +151,47 @@ const res = await axiosCommon.put('/users', userInfo);
     }
   };
 
-  const handleGithubLogin = async () => {
-    try {
-      // 1. Google sign in from firebase
-      const result = await githubSignIn();
-      console.log(result.user);
+  // const handleGithubLogin = async () => {
+  //   try {
+  //     // 1. Google sign in from firebase
+  //     const result = await githubSignIn();
+  //     console.log(result.user);
 
-      // 2. Prepare user info
-      const userInfo = {
-        email: result?.user?.email,
-        name: result?.user?.displayName,
-        photo: result?.user?.photoURL,
-        role: "user",
-      };
+  //     // 2. Prepare user info
+  //     const userInfo = {
+  //       email: result?.user?.email,
+  //       name: result?.user?.displayName,
+  //       photo: result?.user?.photoURL,
+  //       role: "user",
+  //     };
 
-      // 3. Update user info on the server
-      const res = await axiosCommon.put("/users", userInfo);
-      console.log(res.data);
+  //     // 3. Update user info on the server
+  //     const res = await axiosCommon.put("/users", userInfo);
+  //     console.log(res.data);
 
-      // 4. Show success message
-      Swal.fire({
-        position: "top",
-        icon: "success",
-        title: "Login successfully",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+  //     // 4. Show success message
+  //     Swal.fire({
+  //       position: "top",
+  //       icon: "success",
+  //       title: "Login successfully",
+  //       showConfirmButton: false,
+  //       timer: 1500,
+  //     });
 
-      // 5. Navigate to the appropriate location
-      navigate(location?.state ? location.state : "/");
-    } catch (error) {
-      console.log(error);
+  //     // 5. Navigate to the appropriate location
+  //     navigate(location?.state ? location.state : "/");
+  //   } catch (error) {
+  //     console.log(error);
 
-      // 6. Show error message
-      Swal.fire({
-        title: "Error!",
-        text: "Invalid email or password",
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
-    }
-  };
+  //     // 6. Show error message
+  //     Swal.fire({
+  //       title: "Error!",
+  //       text: "Invalid email or password",
+  //       icon: "error",
+  //       confirmButtonText: "Ok",
+  //     });
+  //   }
+  // };
 
   return (
     <div
@@ -295,14 +297,14 @@ const res = await axiosCommon.put('/users', userInfo);
 
             <p>Continue with Google</p>
           </button>
-          <button
+          {/* <button
             onClick={handleGithubLogin}
             className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
           >
             <FaGithub size={28} />
 
             <p>Continue with GitHub</p>
-          </button>
+          </button> */}
           <p className="px-6 text-sm text-center text-gray-400">
             Already have an account?{" "}
             <Link

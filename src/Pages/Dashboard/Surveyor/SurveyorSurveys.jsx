@@ -16,7 +16,9 @@ return data;
 }
 
 })
+
 console.log(surveys);
+
 if(isLoading){
     return <LoadingSpinner />
 }
