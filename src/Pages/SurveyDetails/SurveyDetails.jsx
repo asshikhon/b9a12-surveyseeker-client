@@ -72,12 +72,12 @@ const handleOpen = () => {
         const form = e.target;
         const userName = user ? user.displayName : "";
         const userEmail = user ? user.email : "";
-        const description = form.description.value;
+        const feedback = form.description.value;
         const totalVote = parseInt(survey?.voteCount);
         const newData = {
           userName,
           userEmail,
-          feedBack: description,
+          feedBack: feedback,
           surveyId: _id,
           title,
           option,
@@ -87,6 +87,7 @@ const handleOpen = () => {
           surveyor,
           timestamp,
           totalVote,
+          description,
         };
     
         try {

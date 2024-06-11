@@ -1,8 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/price.png"
+import useUser from "../../hooks/useUser";
 
 const Pricing = () => {
+const [isUser] = useUser();
+
   return (
     <div className="">
 
@@ -52,14 +55,26 @@ const Pricing = () => {
                     <span>Only pro user commented on surveys</span>
                   </li>
                 </ul>
-                <Link
+     { isUser ?           <Link
                 to={`/payments`}
                   rel="noopener noreferrer"
                   href="#"
-                  className="inline-block w-full px-5 py-3 font-bold tracking-wider text-center rounded bg-gray-800 dark:bg-gray-100 text-violet-400 dark:text-orange-500"
+                  
                 >
-                  BUY MEMBERSHIP
+                  <button className="inline-block w-full px-5 py-3 font-bold tracking-wider text-center rounded bg-gray-800 dark:bg-gray-100 text-violet-400 dark:text-orange-500">BUY MEMBERSHIP</button>
                 </Link>
+                
+                : 
+                
+                <Link
+               
+                  rel="noopener noreferrer"
+                  href="#"
+                  
+                >
+                  <button className="inline-block w-full px-5 py-3 font-bold tracking-wider text-center rounded bg-[#f0faf4] text-violet-400 dark:text-orange-500 uppercase" disabled>only user buy this membership</button>
+                </Link>
+                }
               </div>
             </div>
           </div>
