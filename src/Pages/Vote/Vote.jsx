@@ -48,8 +48,8 @@ const Vote = () => {
 
   const handleVoteSubmit = async (e) => {
     e.preventDefault();
-const form = e.target;
-const comment = form.comment.value;
+    const form = e.target;
+    const comment = form.comment ? form.comment.value : "";
     const voter_email = user?.email;
     const voter_name = user?.displayName;
     const voter_image = user?.photoURL;
@@ -97,7 +97,7 @@ const comment = form.comment.value;
       </Helmet>
 
       <div className="">
-        <div className="container bg-[#faeee0] max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-2xl">
+        <div className="container text-black bg-[#faeee0] max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-2xl">
           <div className="mt-3">
             <h2 className="text-2xl font-bold hover:underline">{category}</h2>
           </div>
@@ -139,18 +139,23 @@ const comment = form.comment.value;
                   />
                 </div>
               </div>
-{isProUser ? <div className="mt-8">
-<label className="text-lg font-semibold " htmlFor="Add Comment">
-                Add Your Comment
-              </label>
-              <textarea
-                placeholder="Bio"
-                name="comment"
-                className="textarea textarea-bordered row-span-2 w-full"
-              ></textarea>
-</div> : <div className="mt-8 text-lg font-semibold">
-  Only Pro User Can Comment Here...
-  </div>}
+              {isProUser ? (
+                <div className="mt-8">
+                  <label className="text-lg font-semibold" htmlFor="comment">
+                    Add Your Comment
+                  </label>
+                  <textarea
+                    id="comment"
+                    name="comment"
+                    placeholder="Bio"
+                    className="textarea text-blue-500 textarea-bordered row-span-2 w-full"
+                  ></textarea>
+                </div>
+              ) : (
+                <div className="mt-8 text-lg font-semibold">
+                  Only Pro User Can Comment Here...
+                </div>
+              )}
 
               <br />
               <input

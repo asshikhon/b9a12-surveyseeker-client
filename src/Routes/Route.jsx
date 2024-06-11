@@ -14,8 +14,11 @@ import SurveyorSurveys from "../Pages/Dashboard/Surveyor/SurveyorSurveys";
 import SurveyDetails from "../Pages/SurveyDetails/SurveyDetails";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
 import Commented from "../Pages/Dashboard/ProUser/Commented";
+import Participate from "../Pages/Dashboard/CommonUser/Participate"
 import PrivateRoute from "./PrivateRoute";
 import Vote from "../Pages/Vote/Vote";
+import Reported from "../Pages/Dashboard/CommonUser/Reported";
+import Payment from "../Pages/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +53,10 @@ export const router = createBrowserRouter([
       {
         path: "/pricing",
         element: <Pricing />,
+      },
+      {
+        path: "/payments",
+        element: <Payment />,
       },
       {
         path: "/contact",
@@ -89,6 +96,16 @@ element: <SurveyorSurveys />,
       {
 path: 'comments',
 element: <Commented />,
+
+    },
+      {
+path: 'participate',
+element: <Participate />,
+
+    },
+      {
+path: 'reported',
+element: <Reported />,
 
     },
   

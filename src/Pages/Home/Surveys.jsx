@@ -150,7 +150,7 @@ const Surveys = () => {
             <LoadingSpinner className="text-center h-screen mx-auto block" />
           ) : (
             surveys.map((survey, index) => (
-              <div  key={index} className="card h-auto min-h-[270px]  bg-[#faf3e0]">
+              <div  key={index} className="card h-auto text-black min-h-[270px]  bg-[#faf3e0]">
                 <div className="card-body items-center text-center">
                   <h2 className="card-title">{survey.title}</h2>
                   <p>{survey.description}</p>

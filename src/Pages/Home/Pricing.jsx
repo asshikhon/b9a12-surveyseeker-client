@@ -53,6 +53,7 @@ const Pricing = () => {
                   </li>
                 </ul>
                 <Link
+                to={`/payments`}
                   rel="noopener noreferrer"
                   href="#"
                   className="inline-block w-full px-5 py-3 font-bold tracking-wider text-center rounded bg-gray-800 dark:bg-gray-100 text-violet-400 dark:text-orange-500"

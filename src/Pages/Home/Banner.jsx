@@ -54,7 +54,7 @@ const Banner = () => {
               <p className="mb-5 md:px-12 font-medium">
                 {texts[index].description}
               </p>
-              <Link className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg" to="/explore">
+              <Link className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg" >
                 Explore
               </Link>
             </div>

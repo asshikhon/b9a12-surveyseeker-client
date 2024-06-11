@@ -3,10 +3,12 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
 import { MdDeleteForever } from "react-icons/md";
-import user from "../../../assets/images/users.png"
+import user from "../../../assets/images/users.png";
+import { useState } from "react";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
+  const [selectedRole, setSelectedRole] = useState("all");
 
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
@@ -58,15 +60,29 @@ const AllUsers = () => {
     });
   };
 
+  const filteredUsers = selectedRole === "all" ? users : users.filter(user => user.role === selectedRole);
+
   return (
     <div>
       <Helmet>
         <link rel="icon" type="image/svg+xml" href={user} />
         <title>Manage Users || Dashboard</title>
       </Helmet>
-      <h2 className="text-3xl">All Dashboard Users : ({users.length})</h2>
+      <h2 className="text-3xl">All Dashboard Users : ({filteredUsers.length})</h2>
+
+      <div className="my-4 bg-[#333333] rounded-xl py-4 text-center text-lg text-orange-500 font-bold">
+        <label className="mr-2">Filter by role:</label>
+        <select value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} className="p-2 border rounded">
+          <option value="all">All</option>
+          <option value="admin">Admin</option>
+          <option value="surveyor">Surveyor</option>
+          <option value="pro-user">Pro-User</option>
+          <option value="user">User</option>
+        </select>
+      </div>
+
       <div className="overflow-x-auto p-4 md:p-10">
-        <table className="table table-zebra ">
+        <table className="table table-zebra">
           <thead className="text-white bg-orange-500">
             <tr>
               <th>#</th>
@@ -79,7 +95,7 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
+            {filteredUsers.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>

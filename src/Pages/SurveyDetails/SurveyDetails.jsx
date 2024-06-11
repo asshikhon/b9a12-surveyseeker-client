@@ -135,7 +135,7 @@ const handleOpen = () => {
         </Helmet>
 
       <div className=" ">
-        <div className="container bg-[#f4faf4] max-w-6xl px-10 py-6 mx-auto rounded-lg shadow-xl ">
+        <div className="container text-black bg-[#f4faf4] max-w-6xl px-10 py-6 mx-auto rounded-lg shadow-xl ">
           <div className="flex items-center justify-between">
             <span className="text-sm ">{formattedTimestamp}</span>
             <p

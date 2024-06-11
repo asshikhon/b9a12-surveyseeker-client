@@ -180,8 +180,38 @@ className={({ isActive }) =>
               
                 <FaThList className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">My Commented On Surveys</span>
+                <span className="mx-4 font-medium">Commented Surveys</span>
               </NavLink>}
+
+              <NavLink
+                to="participate"
+                className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+              
+                <FaThList className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">Participate Surveys</span>
+              </NavLink>
+
+              <NavLink
+                to="reported"
+                className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+              
+                <FaThList className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">Reported Surveys</span>
+              </NavLink>
+
+
             </nav>
           </div>
         </div>
