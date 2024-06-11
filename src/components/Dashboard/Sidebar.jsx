@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { AiOutlineBars } from "react-icons/ai";
-import { BsGraphUp } from "react-icons/bs";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import logoHome from "../../assets/images/main.jpeg"
+import logoHome from "../../assets/images/main.jpeg";
 import { IoIosCreate } from "react-icons/io";
-import { FaHome, FaThList, FaUsers } from "react-icons/fa";
+import { FaComments, FaHome, FaThList, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAdmin from "../../hooks/useAdmin";
 import useSurveyor from "../../hooks/useSurveyor";
 import useProUser from "../../hooks/useProUser";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { GiVote } from "react-icons/gi";
+import { MdReportProblem } from "react-icons/md";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -20,7 +22,6 @@ const Sidebar = () => {
   const [isAdmin] = useAdmin();
   const [isSurveyor] = useSurveyor();
   const [isProUser] = useProUser();
-
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -36,9 +37,8 @@ const Sidebar = () => {
       showConfirmButton: false,
       timer: 1500,
     });
-    navigate('/');
-  }
-
+    navigate("/");
+  };
 
   return (
     <>
@@ -46,23 +46,24 @@ const Sidebar = () => {
       <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
-          <Link to="/" className="flex items-center">
-          <img
-            className="h-8 md:h-[80px] w-8 md:w-[70px] rounded-full"
-            src={logoHome}
-            alt=""
-          />
-          <p
-            className="btn btn-ghost text-base md:text-3xl lg:text-4xl"
-            style={{
-              background: "linear-gradient(to right, tomato, black, orange)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            SurveySeeker
-          </p>
-        </Link>
+            <Link to="/" className="flex items-center">
+              <img
+                className="h-8 md:h-[80px] w-8 md:w-[70px] rounded-full"
+                src={logoHome}
+                alt=""
+              />
+              <p
+                className="btn btn-ghost text-base md:text-3xl lg:text-4xl"
+                style={{
+                  background:
+                    "linear-gradient(to right, tomato, black, orange)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                SurveySeeker
+              </p>
+            </Link>
           </div>
         </div>
 
@@ -83,23 +84,24 @@ const Sidebar = () => {
         <div>
           <div>
             <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-orange-400 mx-auto">
-            <Link to="/" className="flex items-center">
-          <img
-            className="h-8 md:h-[40px] w-8 md:w-[38px] rounded-full"
-            src={logoHome}
-            alt=""
-          />
-          <p
-            className="btn btn-ghost text-base md:text-xl"
-            style={{
-              background: "linear-gradient(to right, tomato, black, orange)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            SurveySeeker
-          </p>
-        </Link>
+              <Link to="/" className="flex items-center">
+                <img
+                  className="h-8 md:h-[40px] w-8 md:w-[38px] rounded-full"
+                  src={logoHome}
+                  alt=""
+                />
+                <p
+                  className="btn btn-ghost text-base md:text-xl"
+                  style={{
+                    background:
+                      "linear-gradient(to right, tomato, black, orange)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  SurveySeeker
+                </p>
+              </Link>
             </div>
           </div>
 
@@ -111,88 +113,88 @@ const Sidebar = () => {
             <nav>
               {/* Statistics */}
               <NavLink
-          to="/dashboard"
-          end
-          className={({ isActive }) =>
-            isActive
-              ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-              : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-          }
-        >
-                <BsGraphUp className="w-5 h-5" />
-
-                <span className="mx-4 font-medium">Statistics</span>
-              </NavLink>
-{
-isAdmin &&               <NavLink
-to="all-user"
-end
-className={({ isActive }) =>
-  isActive
-    ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-    : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-}
->
-      <FaUsers className="w-5 h-5" />
-
-      <span className="mx-4 font-medium">Manage Users</span>
-    </NavLink>
-}
-
-              {/* Create survey */}
-{isSurveyor &&              <NavLink
-          to="survey-create"
-          className={({ isActive }) =>
-            isActive
-              ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-              : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-          }
-        >
-                <IoIosCreate  className="w-5 h-5" />
-
-                <span className="mx-4 font-medium">Create Survey</span>
-              </NavLink>}
-              {/* My Surveys */}
-              <NavLink
-                to="surveyor-surveys"
+                to="/dashboard"
+                end
                 className={({ isActive }) =>
+                  isActive
+                    ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                    : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                }
+              >
+                <LuLayoutDashboard className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">Dashboard</span>
+              </NavLink>
+              {isAdmin && (
+                <NavLink
+                  to="all-user"
+                  end
+                  className={({ isActive }) =>
                     isActive
                       ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
                       : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
                   }
                 >
-              
+                  <FaUsers className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Manage Users</span>
+                </NavLink>
+              )}
+
+              {/* Create survey */}
+              {isSurveyor && (
+                <NavLink
+                  to="survey-create"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+                  <IoIosCreate className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Create Survey</span>
+                </NavLink>
+              )}
+              {/* My Surveys */}
+              <NavLink
+                to="surveyor-surveys"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                    : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                }
+              >
                 <FaThList className="w-5 h-5" />
 
                 <span className="mx-4 font-medium">My Surveys</span>
               </NavLink>
 
-
               {/* My comments */}
-{isProUser &&              <NavLink
-                to="comments"
-                className={({ isActive }) =>
+              {isProUser && (
+                <NavLink
+                  to="comments"
+                  className={({ isActive }) =>
                     isActive
                       ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
                       : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
                   }
                 >
-              
-                <FaThList className="w-5 h-5" />
+                  <FaComments className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Commented Surveys</span>
-              </NavLink>}
+                  <span className="mx-4 font-medium">Commented Surveys</span>
+                </NavLink>
+              )}
 
               <NavLink
                 to="participate"
                 className={({ isActive }) =>
-                    isActive
-                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-                  }
-                >
-              
-                <FaThList className="w-5 h-5" />
+                  isActive
+                    ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                    : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                }
+              >
+                <GiVote className="w-5 h-5" />
 
                 <span className="mx-4 font-medium">Participate Surveys</span>
               </NavLink>
@@ -200,18 +202,15 @@ className={({ isActive }) =>
               <NavLink
                 to="reported"
                 className={({ isActive }) =>
-                    isActive
-                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-                  }
-                >
-              
-                <FaThList className="w-5 h-5" />
+                  isActive
+                    ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                    : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                }
+              >
+                <MdReportProblem className="w-5 h-5" />
 
                 <span className="mx-4 font-medium">Reported Surveys</span>
               </NavLink>
-
-
             </nav>
           </div>
         </div>
@@ -220,14 +219,14 @@ className={({ isActive }) =>
           <hr />
 
           {/* Profile Menu */}
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                    isActive
-                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-                  }
-                >
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive
+                ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+            }
+          >
             <FaHome className="w-5 h-5" />
 
             <span className="mx-4 font-medium">Home</span>

@@ -2,9 +2,9 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-// import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const CheckOutForm = () => {
     const stripe = useStripe();
@@ -78,9 +78,9 @@ const CheckOutForm = () => {
                 .then(res => {
                     console.log(res.data)
                     Swal.fire({
-                        position: "top-end",
+                        position: "top",
                         icon: "success",
-                        title: "Thank you for your payment",
+                        title: `${user?.displayName} Thank you for your payment`,
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -88,34 +88,45 @@ const CheckOutForm = () => {
                 })
                 .catch(err => {
                     console.error('Payment saving error:', err);
+                    toast.error(err.message);
                 });
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <CardElement
-                options={{
-                    style: {
-                        base: {
-                            fontSize: '16px',
-                            color: '#424770',
-                            '::placeholder': {
-                                color: '#aab7c4',
+        <div className="max-w-md mx-auto mt-10 md:mt-20 lg:mt-28 bg-white p-8 shadow-md rounded-lg">
+            <h2 className="text-2xl font-semibold text-center mb-6">Complete Your Payment</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                    <CardElement
+                        options={{
+                            style: {
+                                base: {
+                                    fontSize: '16px',
+                                    color: '#424770',
+                                    '::placeholder': {
+                                        color: '#aab7c4',
+                                    },
+                                },
+                                invalid: {
+                                    color: '#9e2146',
+                                },
                             },
-                        },
-                        invalid: {
-                            color: '#9e2146',
-                        },
-                    },
-                }}
-            />
-            <button className="btn-sm btn-primary bg-red-500 my-4" type="submit" disabled={!stripe || !clientSecret}>
-                Pay
-            </button>
-            {error && <p className="text-red-500">{error}</p>}
-            {transactionId && <p className="text-green-500">Your Transaction id: {transactionId}</p>}
-        </form>
+                        }}
+                        className="p-3 border border-gray-300 rounded-md"
+                    />
+                </div>
+                <button
+                    className="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-200"
+                    type="submit"
+                    disabled={!stripe || !clientSecret}
+                >
+                    Pay
+                </button>
+                {error && <p className="mt-4 text-red-500">{error}</p>}
+                {transactionId && <p className="mt-4 text-green-500">Your Transaction ID: {transactionId}</p>}
+            </form>
+        </div>
     );
 };
 
