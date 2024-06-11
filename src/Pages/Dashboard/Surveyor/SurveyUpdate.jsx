@@ -87,11 +87,13 @@ if(isLoading){
                   <td>{survey?.category}</td>
                   <td>{survey.deadline}</td>
                   <td>
-                    <Link className="">
-                    <button className="btn">
-                    <GrUpdate className="text-green-500 text-xl font-bold" />
-                    </button>
-                    </Link>
+                  <Link 
+   to={`/dashboard/update/${survey?._id}`}
+   className="">
+   <button className="btn">
+   <GrUpdate className="text-green-500 text-xl font-bold" />
+   </button>
+</Link>
                     </td>
                   <td>
                    

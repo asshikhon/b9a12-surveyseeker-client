@@ -22,6 +22,7 @@ import Payment from "../Pages/Payment/Payment";
 import AllPayments from "../Pages/Dashboard/Admin/AllPayments";
 import SurveyUpdate from "../Pages/Dashboard/Surveyor/SurveyUpdate";
 import Feedback from "../Pages/Dashboard/Surveyor/Feedback";
+import Update from "../Pages/Dashboard/Surveyor/Update";
 
 export const router = createBrowserRouter([
   {
@@ -107,6 +108,14 @@ path: 'survey-update',
 element: <SurveyUpdate />,
 
     },
+
+    {
+      path: "update/:id",
+      element:<PrivateRoute> <Update></Update></PrivateRoute>,
+      loader: ({ params }) =>
+        fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`),
+    },
+
       {
 path: 'feedback',
 element: <Feedback />,

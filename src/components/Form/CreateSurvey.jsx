@@ -45,7 +45,7 @@ const CreateSurvey = () => {
       setOption("no"); 
       setCategory("");
       setDeadline("");
-      navigate('/dashboard/surveyor-surveys');
+      navigate('/dashboard/survey-update');
     }
    
   });
