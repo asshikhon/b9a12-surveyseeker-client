@@ -25,6 +25,8 @@ import Feedback from "../Pages/Dashboard/Surveyor/Feedback";
 import Update from "../Pages/Dashboard/Surveyor/Update";
 import ResPonseDetails from "../Pages/Dashboard/Surveyor/ResPonseDetails";
 import AdminSurveys from "../Pages/Dashboard/Admin/AdminSurveys";
+import SurveyorRoute from "./SurveyorRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -62,7 +64,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/payments",
-        element: <Payment />,
+        element: <PrivateRoute><Payment /></PrivateRoute>,
       },
       {
         path: "/contact",
@@ -79,7 +81,9 @@ export const router = createBrowserRouter([
   // for dashboard
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: <PrivateRoute>
+      <DashboardLayout />
+    </PrivateRoute>,
     children: [
       {
         path: "/dashboard",
@@ -87,37 +91,49 @@ export const router = createBrowserRouter([
       },
       {
         path: "survey-create",
-        element: <SurveyCreation />,
+        element: <SurveyorRoute>
+           <SurveyCreation />
+        </SurveyorRoute> ,
       },
       {
         path: "all-user",
-        element: <AllUsers />,
+        element: <AdminRoute>
+          <AllUsers />
+        </AdminRoute>,
       },
       {
         path: "manage-surveys",
-        element: <AdminSurveys />,
+        element: <AdminRoute>
+          <AdminSurveys />
+        </AdminRoute>,
       },
 
       {
         path: "all-payments",
-        element: <AllPayments />,
+        element: <AdminRoute>
+          <AllPayments />
+        </AdminRoute>,
       },
       {
         path: "surveyor-surveys",
-        element: <SurveyorSurveys />,
+        element: <SurveyorRoute>
+          <SurveyorSurveys />
+        </SurveyorRoute>,
       },
       {
         path: "survey-update",
-        element: <SurveyUpdate />,
+        element: <SurveyorRoute>
+          <SurveyUpdate />
+        </SurveyorRoute>,
       },
 
       {
         path: "update/:id",
         element: (
-          <PrivateRoute>
+          <SurveyorRoute>
             {" "}
             <Update></Update>
-          </PrivateRoute>
+          </SurveyorRoute>
         ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`),
@@ -125,14 +141,18 @@ export const router = createBrowserRouter([
 
       {
         path: "response/:id",
-        element: <ResPonseDetails />,
+        element: <SurveyorRoute>
+          <ResPonseDetails />
+        </SurveyorRoute>,
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/vote/${params.id}`),
       },
 
       {
         path: "feedback",
-        element: <Feedback />,
+        element: <SurveyorRoute>
+          <Feedback />
+        </SurveyorRoute>,
       },
       {
         path: "comments",
