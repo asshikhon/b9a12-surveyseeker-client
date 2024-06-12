@@ -42,7 +42,7 @@ const FeaturedSurvey = () => {
       </div>
 
       <div>
-        <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3">
           {topVotes.map((survey, index) => (
             <div key={index} className="card h-auto text-black min-h-[270px] bg-[#faf3e0]">
               <div className="card-body items-center text-center">

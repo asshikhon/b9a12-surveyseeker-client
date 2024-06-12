@@ -9,6 +9,7 @@ const Update = () => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
+  const [option, setOption] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [deadline, setDeadline] = useState('');
@@ -24,6 +25,7 @@ const Update = () => {
   useEffect(() => {
     if (survey) {
       setTitle(survey?.title);
+      setOption(survey?.option);
       setDescription(survey?.description);
       setCategory(survey?.category);
       setDeadline(survey?.deadline);
@@ -35,15 +37,14 @@ const Update = () => {
 
     const updatedSurvey = {
       title,
+      option,
       description,
-   
       category,
       deadline,
     };
 
     try {
       await axiosSecure.put(`/surveys/${survey._id}`, updatedSurvey);
-      // Handle success (e.g., show a success message, redirect, etc.)
       Swal.fire({
         position: "top",
         icon: "success",
@@ -93,7 +94,29 @@ const Update = () => {
           ></textarea>
         </div>
         <div>
-
+          <label className="block text-sm font-medium">Option</label>
+          <div className="flex space-x-4 mt-1">
+            <label className="flex items-center">
+              <input
+                type="radio"
+                value="yes"
+                checked={option === "yes"}
+                onChange={(e) => setOption(e.target.value)}
+                className="mr-2"
+              />
+              Yes
+            </label>
+            <label className="flex items-center">
+              <input
+                type="radio"
+                value="no"
+                checked={option === "no"}
+                onChange={(e) => setOption(e.target.value)}
+                className="mr-2"
+              />
+              No
+            </label>
+          </div>
         </div>
         <div>
           <label className="block text-sm font-medium">Category</label>
@@ -135,3 +158,6 @@ const Update = () => {
 };
 
 export default Update;
+
+
+

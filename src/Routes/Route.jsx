@@ -14,7 +14,7 @@ import SurveyorSurveys from "../Pages/Dashboard/Surveyor/SurveyorSurveys";
 import SurveyDetails from "../Pages/SurveyDetails/SurveyDetails";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
 import Commented from "../Pages/Dashboard/ProUser/Commented";
-import Participate from "../Pages/Dashboard/CommonUser/Participate"
+import Participate from "../Pages/Dashboard/CommonUser/Participate";
 import PrivateRoute from "./PrivateRoute";
 import Vote from "../Pages/Vote/Vote";
 import Reported from "../Pages/Dashboard/CommonUser/Reported";
@@ -23,6 +23,7 @@ import AllPayments from "../Pages/Dashboard/Admin/AllPayments";
 import SurveyUpdate from "../Pages/Dashboard/Surveyor/SurveyUpdate";
 import Feedback from "../Pages/Dashboard/Surveyor/Feedback";
 import Update from "../Pages/Dashboard/Surveyor/Update";
+import ResPonseDetails from "../Pages/Dashboard/Surveyor/ResPonseDetails";
 
 export const router = createBrowserRouter([
   {
@@ -72,71 +73,74 @@ export const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-  { path: '/signup', element: <SignUp /> },
+  { path: "/signup", element: <SignUp /> },
+
+  // for dashboard
   {
     path: "/dashboard",
     element: <DashboardLayout />,
     children: [
       {
-path: '/dashboard',
-element: <Statistics />,
-
-    },
+        path: "/dashboard",
+        element: <Statistics />,
+      },
       {
-path: 'survey-create',
-element: <SurveyCreation />,
-
-    },
+        path: "survey-create",
+        element: <SurveyCreation />,
+      },
       {
-path: 'all-user',
-element: <AllUsers />,
-
-    },
+        path: "all-user",
+        element: <AllUsers />,
+      },
 
       {
-path: 'all-payments',
-element: <AllPayments />,
-
-    },
+        path: "all-payments",
+        element: <AllPayments />,
+      },
       {
-path: 'surveyor-surveys',
-element: <SurveyorSurveys />,
-
-    },
+        path: "surveyor-surveys",
+        element: <SurveyorSurveys />,
+      },
       {
-path: 'survey-update',
-element: <SurveyUpdate />,
-
-    },
-
-    {
-      path: "update/:id",
-      element:<PrivateRoute> <Update></Update></PrivateRoute>,
-      loader: ({ params }) =>
-        fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`),
-    },
+        path: "survey-update",
+        element: <SurveyUpdate />,
+      },
 
       {
-path: 'feedback',
-element: <Feedback />,
+        path: "update/:id",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Update></Update>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`),
+      },
 
-    },
       {
-path: 'comments',
-element: <Commented />,
+        path: "response/:id",
+        element: <ResPonseDetails />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/vote/${params.id}`),
+      },
 
-    },
       {
-path: 'participate',
-element: <Participate />,
-
-    },
+        path: "feedback",
+        element: <Feedback />,
+      },
       {
-path: 'reported',
-element: <Reported />,
-
-    },
-  
-  ],
-  }
+        path: "comments",
+        element: <Commented />,
+      },
+      {
+        path: "participate",
+        element: <Participate />,
+      },
+      {
+        path: "reported",
+        element: <Reported />,
+      },
+    ],
+  },
 ]);

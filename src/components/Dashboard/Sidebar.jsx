@@ -14,6 +14,7 @@ import useProUser from "../../hooks/useProUser";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { GiVote } from "react-icons/gi";
 import { MdFeedback, MdPayments, MdReportProblem } from "react-icons/md";
+import useUser from "../../hooks/useUser";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -22,6 +23,7 @@ const Sidebar = () => {
   const [isAdmin] = useAdmin();
   const [isSurveyor] = useSurveyor();
   const [isProUser] = useProUser();
+  const [isUser] = useUser();
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -172,8 +174,8 @@ const Sidebar = () => {
                 </NavLink>
               )}
 
-{/* update survey for surveyor */}
-{isSurveyor && (
+              {/* update survey for surveyor */}
+              {isSurveyor && (
                 <NavLink
                   to="survey-update"
                   className={({ isActive }) =>
@@ -186,14 +188,25 @@ const Sidebar = () => {
 
                   <span className="mx-4 font-medium">Survey update</span>
                 </NavLink>
-            
-              )
-              
-              
-              }
+              )}
 
-{/* feedback surveyor */}
-{isSurveyor && (
+              {isSurveyor && (
+                <NavLink
+                  to="surveyor-surveys"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+                  <FaThList className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Surveys Response</span>
+                </NavLink>
+              )}
+
+              {/* feedback surveyor */}
+              {isSurveyor && (
                 <NavLink
                   to="feedback"
                   className={({ isActive }) =>
@@ -206,26 +219,44 @@ const Sidebar = () => {
 
                   <span className="mx-4 font-medium">Feedbacks</span>
                 </NavLink>
-            
-              )
-              
-              
-              }
+              )}
 
               {/* My Surveys */}
-              <NavLink
-                to="surveyor-surveys"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-                    : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-                }
-              >
-                <FaThList className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">My Surveys</span>
-              </NavLink>
+              {/* for isUser and proUser */}
+              {isUser ||
+                (isProUser && (
+                  <NavLink
+                    to="participate"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                        : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                    }
+                  >
+                    <GiVote className="w-5 h-5" />
 
+                    <span className="mx-4 font-medium">
+                      Participate Surveys
+                    </span>
+                  </NavLink>
+                ))}
+
+              {isUser ||
+                (isProUser && (
+                  <NavLink
+                    to="reported"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                        : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                    }
+                  >
+                    <MdReportProblem className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Reported Surveys</span>
+                  </NavLink>
+                ))}
               {/* My comments */}
               {isProUser && (
                 <NavLink
@@ -241,32 +272,6 @@ const Sidebar = () => {
                   <span className="mx-4 font-medium">Commented Surveys</span>
                 </NavLink>
               )}
-
-              <NavLink
-                to="participate"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-                    : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-                }
-              >
-                <GiVote className="w-5 h-5" />
-
-                <span className="mx-4 font-medium">Participate Surveys</span>
-              </NavLink>
-
-              <NavLink
-                to="reported"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-                    : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-                }
-              >
-                <MdReportProblem className="w-5 h-5" />
-
-                <span className="mx-4 font-medium">Reported Surveys</span>
-              </NavLink>
             </nav>
           </div>
         </div>
