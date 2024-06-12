@@ -1,0 +1,18 @@
+.feedback-text {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    max-height: 40px; /* Set to the height of approximately 40 characters */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .feedback-text.expanded {
+    max-height: 200px; /* Set to a larger height to show full text */
+    white-space: normal;
+    opacity: 1;
+  }
+  
+  .feedback-text:hover {
+    opacity: 0.8; /* Slightly fade the text on hover */
+  }
+  
