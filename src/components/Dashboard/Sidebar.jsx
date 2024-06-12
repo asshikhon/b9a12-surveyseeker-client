@@ -15,6 +15,7 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { GiVote } from "react-icons/gi";
 import { MdFeedback, MdPayments, MdReportProblem } from "react-icons/md";
 import useUser from "../../hooks/useUser";
+import { RiSurveyFill } from "react-icons/ri";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -142,6 +143,22 @@ const Sidebar = () => {
                   <span className="mx-4 font-medium">Manage Users</span>
                 </NavLink>
               )}
+              {isAdmin && (
+                <NavLink
+                  to="manage-surveys"
+                  end
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+                  <RiSurveyFill className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Publish/UnPublish Surveys</span>
+                </NavLink>
+              )}
+
               {isAdmin && (
                 <NavLink
                   to="all-payments"

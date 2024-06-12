@@ -24,6 +24,7 @@ import SurveyUpdate from "../Pages/Dashboard/Surveyor/SurveyUpdate";
 import Feedback from "../Pages/Dashboard/Surveyor/Feedback";
 import Update from "../Pages/Dashboard/Surveyor/Update";
 import ResPonseDetails from "../Pages/Dashboard/Surveyor/ResPonseDetails";
+import AdminSurveys from "../Pages/Dashboard/Admin/AdminSurveys";
 
 export const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ export const router = createBrowserRouter([
       {
         path: "all-user",
         element: <AllUsers />,
+      },
+      {
+        path: "manage-surveys",
+        element: <AdminSurveys />,
       },
 
       {

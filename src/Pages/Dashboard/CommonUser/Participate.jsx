@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const Participate = () => {
     const {user} = useAuth();
@@ -21,7 +22,10 @@ if(isLoading){
 }
     return (
         <div className="mt-12 md:mt-20 lg:mt-24">
-
+      <Helmet>
+        <link rel="icon" type="image/svg+xml" href={``} />
+        <title>Participate Surveys || Dashboard</title>
+      </Helmet>
 
         <div className="my-4 bg-[#333333] rounded-xl py-4 text-center text-lg text-orange-500 font-bold">
           <h2 className="mr-2">Here Is Participate Surveys Lists Of {user?.displayName} </h2>
