@@ -155,7 +155,9 @@ const Sidebar = () => {
                 >
                   <RiSurveyFill className="w-5 h-5" />
 
-                  <span className="mx-4 font-medium">Publish/UnPublish Surveys</span>
+                  <span className="mx-4 font-medium">
+                    Publish/UnPublish Surveys
+                  </span>
                 </NavLink>
               )}
 
@@ -239,41 +241,63 @@ const Sidebar = () => {
               )}
 
               {/* My Surveys */}
+              {isUser && (
+                <NavLink
+                  to="participate"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+                  <GiVote className="w-5 h-5" />
 
-              {/* for isUser and proUser */}
-              {isUser ||
-                (isProUser && (
-                  <NavLink
-                    to="participate"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-                        : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-                    }
-                  >
-                    <GiVote className="w-5 h-5" />
+                  <span className="mx-4 font-medium">Participate Surveys</span>
+                </NavLink>
+              )}
+              {isProUser && (
+                <NavLink
+                  to="participate"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+                  <GiVote className="w-5 h-5" />
 
-                    <span className="mx-4 font-medium">
-                      Participate Surveys
-                    </span>
-                  </NavLink>
-                ))}
+                  <span className="mx-4 font-medium">Participate Surveys</span>
+                </NavLink>
+              )}
 
-              {isUser ||
-                (isProUser && (
-                  <NavLink
-                    to="reported"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
-                        : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
-                    }
-                  >
-                    <MdReportProblem className="w-5 h-5" />
+              {isUser && (
+                <NavLink
+                  to="reported"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+                  <MdReportProblem className="w-5 h-5" />
 
-                    <span className="mx-4 font-medium">Reported Surveys</span>
-                  </NavLink>
-                ))}
+                  <span className="mx-4 font-medium">Reported Surveys</span>
+                </NavLink>
+              )}
+              {isProUser && (
+                <NavLink
+                  to="reported"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-base flex items-center px-4 py-2 my-5 font-semibold border border-orange-500 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-white"
+                      : "text-base flex items-center px-4 py-2 my-5 z-[1] hover:bg-[#23BE0A] hover:text-white"
+                  }
+                >
+                  <MdReportProblem className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Reported Surveys</span>
+                </NavLink>
+              )}
               {/* My comments */}
               {isProUser && (
                 <NavLink
